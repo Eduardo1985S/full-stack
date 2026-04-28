@@ -1,0 +1,144 @@
+/* Layout Geral do Admin */
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar */
+.admin-sidebar {
+  width: 250px;
+  background-color: var(--sidebar-bg);
+  color: var(--sidebar-text);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.sidebar-header {
+  padding: 1.5rem;
+  text-align: center;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  color: var(--sidebar-text-active);
+}
+
+.sidebar-header h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: white;
+}
+
+.sidebar-nav {
+  padding: 1rem 0;
+}
+
+.nav-category {
+  padding: 0.5rem 1.5rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #666;
+  margin-top: 1rem;
+}
+
+.nav-item {
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 0.9rem;
+}
+
+.nav-item:hover, .nav-item.active {
+  background-color: var(--sidebar-hover);
+  color: var(--sidebar-text-active);
+  border-left: 3px solid var(--topbar-bg);
+}
+
+/* Main Area */
+.admin-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Topbar */
+.admin-topbar {
+  height: 60px;
+  background-color: var(--topbar-bg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  color: var(--topbar-text);
+}
+
+.topbar-left, .topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.topbar-right span {
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+/* Content Area */
+.admin-content {
+  padding: 2rem;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.content-header {
+  margin-bottom: 1.5rem;
+}
+
+.content-header h1 {
+  font-size: 1.5rem;
+  color: var(--text-main);
+}
+
+.breadcrumb {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+}
+
+.breadcrumb-active {
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+/* Toolbar (Add New / Search) */
+.content-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--content-bg);
+  padding: 1rem 1.5rem;
+  margin-bottom: 1px; /* Espaço para a tabela logo abaixo */
+  border: 1px solid var(--border-color);
+  border-bottom: none;
+}
+
+.toolbar-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.toolbar-search {
+  display: flex;
+  align-items: center;
+}
+
+.toolbar-search input {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  width: 250px;
+}

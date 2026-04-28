@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Cores Admin Panel */
+  --sidebar-bg: #2b2b2b;
+  --sidebar-hover: #3b3b3b;
+  --sidebar-text: #a0a0a0;
+  --sidebar-text-active: #ffffff;
+  
+  --topbar-bg: #7cb5ec;
+  --topbar-text: #ffffff;
+  
+  --main-bg: #f5f5f5;
+  --content-bg: #ffffff;
+  
+  --text-main: #333333;
+  --text-muted: #666666;
+  
+  --primary-color: #4285f4; /* Azul primário botões */
+  --primary-hover: #3367d6;
+  --danger-color: #ea4335;
+  --danger-hover: #c5221f;
+  --warning-color: #fbbc05;
+  --warning-hover: #f2a600;
+  
+  --border-color: #e0e0e0;
+  --table-header-bg: #333333;
+  --table-header-text: #ffffff;
+  --table-row-hover: #f9f9f9;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--main-bg);
+  color: var(--text-main);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Tipografia Básica */
+h1, h2, h3 {
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+/* Botões */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 0.85rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-primary {
+  background: var(--primary-color);
+  color: #fff;
+}
+.btn-primary:hover { background: var(--primary-hover); }
+
+.btn-danger {
+  background: var(--danger-color);
+  color: #fff;
+}
+.btn-danger:hover { background: var(--danger-hover); }
+
+.btn-warning {
+  background: var(--warning-color);
+  color: #fff;
+}
+.btn-warning:hover { background: var(--warning-hover); }
+
+.btn-sm {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.8rem;
+}
+
+/* Inputs Gerais */
+.input-field {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 0.9rem;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
