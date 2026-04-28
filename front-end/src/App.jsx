@@ -72,19 +72,19 @@ function App() {
       {/* Sidebar */}
       <aside className="admin-sidebar">
         <div className="sidebar-header">
-          <h2>CRUD Admin Panel</h2>
+          <h2>Painel Administrativo</h2>
         </div>
         <div className="sidebar-nav">
-          <div className="nav-category">Main Navigation</div>
+          <div className="nav-category">Navegação Principal</div>
           <div className="nav-item active">
-            <LayoutDashboard size={18} /> Dashboard
+            <LayoutDashboard size={18} /> Início
           </div>
           <div className="nav-item">
-            <Package size={18} /> Inventory
+            <Package size={18} /> Inventário
           </div>
-          <div className="nav-category">Settings</div>
+          <div className="nav-category">Configurações</div>
           <div className="nav-item">
-            <Settings size={18} /> Preferences
+            <Settings size={18} /> Preferências
           </div>
         </div>
       </aside>
@@ -94,11 +94,11 @@ function App() {
         {/* Topbar */}
         <header className="admin-topbar">
           <div className="topbar-left">
-            <span>Inventory System</span>
+            <span>Sistema de Inventário</span>
           </div>
           <div className="topbar-right">
             <User size={18} />
-            <span>Admin User</span>
+            <span>Administrador</span>
             <LogOut size={18} style={{marginLeft: '1rem', cursor: 'pointer'}} />
           </div>
         </header>
@@ -106,20 +106,20 @@ function App() {
         {/* Content */}
         <main className="admin-content">
           <div className="content-header">
-            <h1>Inventory</h1>
-            <div className="breadcrumb">Home / <span className="breadcrumb-active">Inventory</span></div>
+            <h1>Inventário</h1>
+            <div className="breadcrumb">Início / <span className="breadcrumb-active">Inventário</span></div>
           </div>
 
           <div className="content-toolbar">
             <div className="toolbar-actions">
               <button className="btn btn-primary" onClick={openNewModal}>
-                <Plus size={16} /> ADD NEW
+                <Plus size={16} /> ADICIONAR
               </button>
             </div>
             <div className="toolbar-search">
               <input 
                 type="text" 
-                placeholder="Search name or category..." 
+                placeholder="Buscar por nome ou categoria..." 
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
