@@ -76,13 +76,15 @@ Quando você buscar (`GET`), enviar (`POST`) ou atualizar (`PUT`) um produto, o 
 
 ```json
 {
-  "nome": "Notebook Dell XPS",
-  "preco": 7500.00,
-  "estoque": 10,
-  "categoria": "Eletrônicos"
+  "nome": "Fresa de Topo Metal Duro 10mm",
+  "preco": 120.50,
+  "estoque": 40,
+  "categoria": "Ferramentas de Corte"
 }
 ```
 
 ---
 
 *Backend estruturado e simplificado, ideal para integração com seu Front-End em React!*
+
+<!-- CHECKPOINT id="ckpt_moij7qy3_9vwzep" time="2026-04-28T11:17:31.563Z" note="auto" fixes=0 questions=0 highlights=0 sections="" -->

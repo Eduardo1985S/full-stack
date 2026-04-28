@@ -13,8 +13,8 @@ CREATE TABLE IF NOT EXISTS produtos (
 
 -- (Opcional) Inserção de dados de exemplo
 INSERT INTO produtos (nome, preco, estoque, categoria) VALUES 
-('Notebook Dell XPS', 7500.00, 10, 'Eletrônicos'),
-('Mouse Sem Fio Logitech', 150.00, 50, 'Acessórios'),
-('Teclado Mecânico', 350.50, 30, 'Acessórios'),
-('Monitor UltraWide LG', 2200.00, 15, 'Eletrônicos'),
-('Mochila para Notebook', 250.00, 100, 'Acessórios');
+('Fresa de Topo Metal Duro 10mm', 120.50, 40, 'Ferramentas de Corte'),
+('Pastilha de Metal Duro para Torno', 45.00, 200, 'Pastilhas e Insertos'),
+('Eixo de Aço Carbono Trefilado', 320.00, 15, 'Eixos e Componentes'),
+('Engrenagem Cilíndrica Dentes Retos', 150.00, 30, 'Transmissão'),
+('Bucha de Bronze Sinterizado', 25.50, 100, 'Buchas e Rolamentos');
