@@ -5,7 +5,7 @@ Projeto Front-end em React + Vite criado para consumir a API de gerenciamento de
 ## Tecnologias
 - **React (Vite)**
 - **Vanilla CSS** (Estilo clássico Admin Panel)
-- **Axios** para requisições HTTP
+- **Fetch API** nativa para requisições HTTP
 - **Lucide-React** para ícones
 
 ## Estrutura Visual

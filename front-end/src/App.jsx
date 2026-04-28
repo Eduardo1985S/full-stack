@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import api from './services/api';
+import { BASE_URL } from './services/api';
 import ProductList from './components/ProductList';
 import ProductForm from './components/ProductForm';
-import { Package, LayoutDashboard, Settings, LogOut, Search, Plus, User } from 'lucide-react';
+import { Package, LayoutDashboard, Settings, LogOut, Plus, User } from 'lucide-react';
 import './App.css';
 
 function App() {
@@ -13,8 +13,10 @@ function App() {
 
   const fetchProdutos = async () => {
     try {
-      const response = await api.get('/produtos');
-      setProdutos(response.data);
+      const response = await fetch(`${BASE_URL}/produtos`);
+      if (!response.ok) throw new Error('Erro na requisição');
+      const data = await response.json();
+      setProdutos(data);
     } catch (error) {
       console.error("Erro ao buscar produtos", error);
       alert("Erro ao buscar dados da API.");
@@ -28,9 +30,17 @@ function App() {
   const handleCreateOrUpdate = async (formData) => {
     try {
       if (produtoEmEdicao) {
-        await api.put(`/produtos/${produtoEmEdicao.id}`, formData);
+        await fetch(`${BASE_URL}/produtos/${produtoEmEdicao.id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        });
       } else {
-        await api.post('/produtos', formData);
+        await fetch(`${BASE_URL}/produtos`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        });
       }
       setIsModalOpen(false);
       setProdutoEmEdicao(null);
@@ -44,7 +54,7 @@ function App() {
   const handleDelete = async (id) => {
     if(window.confirm('Tem certeza que deseja excluir este item?')) {
       try {
-        await api.delete(`/produtos/${id}`);
+        await fetch(`${BASE_URL}/produtos/${id}`, { method: 'DELETE' });
         fetchProdutos();
       } catch (error) {
         console.error("Erro ao excluir", error);
