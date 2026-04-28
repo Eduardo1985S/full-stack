@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
 
 app.listen(PORT, () => {
   console.log('='.repeat(50));
-  console.log('🚀 Servidor rodando!');
+  console.log('🚀 Servidor rodando!!!');
   console.log(`📍 URL: http://localhost:${PORT}`);
   console.log(`💾 Banco: PostgreSQL (${process.env.DB_NAME})`);
   console.log(`🌍 Ambiente: ${process.env.NODE_ENV || 'development'}`);

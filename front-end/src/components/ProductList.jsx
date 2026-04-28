@@ -2,7 +2,7 @@ import React from 'react';
 import { Edit, Trash2, Eye } from 'lucide-react';
 import './ProductList.css';
 
-export default function ProductList({ produtos, onEdit, onDelete }) {
+export default function ProductList({ produtos, onView, onEdit, onDelete }) {
   if (!produtos || produtos.length === 0) {
     return (
       <div className="table-empty">
@@ -36,7 +36,7 @@ export default function ProductList({ produtos, onEdit, onDelete }) {
               </td>
               <td>
                 <div className="table-actions">
-                  <button className="btn-action btn-action-view" title="Ver Detalhes">
+                  <button className="btn-action btn-action-view" title="Ver Detalhes" onClick={() => onView(produto)}>
                     <Eye size={14} />
                   </button>
                   <button className="btn-action btn-action-edit" title="Editar" onClick={() => onEdit(produto)}>

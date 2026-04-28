@@ -3,6 +3,7 @@ import { BASE_URL } from './services/api';
 import ProductList from './components/ProductList';
 import ProductForm from './components/ProductForm';
 import ConfirmModal from './components/ConfirmModal';
+import ProductDetail from './components/ProductDetail';
 import { Package, LayoutDashboard, Settings, LogOut, Plus, User } from 'lucide-react';
 import toast, { Toaster } from 'react-hot-toast';
 import './App.css';
@@ -17,6 +18,15 @@ function App() {
   // Estados para o Modal de Exclusão
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
   const [itemToDelete, setItemToDelete] = useState(null);
+
+  // Estados para o Modal de Detalhes
+  const [isDetailOpen, setIsDetailOpen] = useState(false);
+  const [produtoDetalhe, setProdutoDetalhe] = useState(null);
+
+  const openDetail = (produto) => {
+    setProdutoDetalhe(produto);
+    setIsDetailOpen(true);
+  };
 
   const fetchProdutos = async () => {
     try {
@@ -178,7 +188,8 @@ function App() {
             </div>
           ) : (
             <ProductList 
-              produtos={filteredProdutos} 
+              produtos={filteredProdutos}
+              onView={openDetail}
               onEdit={openEditModal} 
               onDelete={requestDelete} 
             />
@@ -192,6 +203,12 @@ function App() {
               setIsModalOpen(false);
               setProdutoEmEdicao(null);
             }}
+          />
+
+          <ProductDetail
+            isOpen={isDetailOpen}
+            produto={produtoDetalhe}
+            onClose={() => { setIsDetailOpen(false); setProdutoDetalhe(null); }}
           />
 
           <ConfirmModal 
