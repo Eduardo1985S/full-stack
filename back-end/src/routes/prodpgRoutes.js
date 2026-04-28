@@ -12,7 +12,7 @@ const ProdutoController = require('../controllers/prodpgController');
 // GET /produtos - Listar todos os produtos
 router.get('/', ProdutoController.listarTodos);
 
-// GET /produtos/categoria/:categoria - Buscar por categoria
+// GET /produtos/buscar/nome/:nome - Buscar por nome
 router.get('/buscar/nome/:nome', ProdutoController.buscarPorNome);
 
 // GET /produtos/:id - Buscar produto específico por ID

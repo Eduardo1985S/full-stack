@@ -108,8 +108,8 @@ async function deletar(id) {
 
 // ============================================================
 // FUNÇÃO: buscarPorNome
-// DESCRIÇÃO: Filtra produtos por categoria
-// PARÂMETRO: categoria (string)
+// DESCRIÇÃO: Filtra produtos pelo nome
+// PARÂMETRO: nome (string)
 // RETORNO: Promise com array de produtos
 // ============================================================
 async function buscarPorNome(nome) {

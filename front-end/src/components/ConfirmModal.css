@@ -1,0 +1,40 @@
+.confirm-modal {
+  width: 400px;
+}
+
+.confirm-header {
+  border-bottom: none;
+  padding-bottom: 0.5rem;
+}
+
+.title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.icon-warning {
+  color: var(--danger-color);
+}
+
+.confirm-body {
+  padding-top: 0;
+  padding-bottom: 0.5rem;
+  color: var(--text-muted);
+}
+
+.confirm-footer {
+  border-top: 1px solid var(--border-color);
+  padding-top: 1rem;
+  margin-top: 1rem;
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+}
+
+.btn-secondary:hover {
+  background: #eee;
+}

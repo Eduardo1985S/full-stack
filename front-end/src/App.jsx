@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { BASE_URL } from './services/api';
 import ProductList from './components/ProductList';
 import ProductForm from './components/ProductForm';
+import ConfirmModal from './components/ConfirmModal';
 import { Package, LayoutDashboard, Settings, LogOut, Plus, User } from 'lucide-react';
+import toast, { Toaster } from 'react-hot-toast';
 import './App.css';
 
 function App() {
@@ -10,16 +12,27 @@ function App() {
   const [produtoEmEdicao, setProdutoEmEdicao] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
+  const [loading, setLoading] = useState(true);
+
+  // Estados para o Modal de Exclusão
+  const [isConfirmOpen, setIsConfirmOpen] = useState(false);
+  const [itemToDelete, setItemToDelete] = useState(null);
 
   const fetchProdutos = async () => {
     try {
+      setLoading(true);
       const response = await fetch(`${BASE_URL}/produtos`);
-      if (!response.ok) throw new Error('Erro na requisição');
+      if (!response.ok) {
+        const errData = await response.json().catch(() => ({}));
+        throw new Error(errData.mensagem || 'Erro na requisição');
+      }
       const data = await response.json();
       setProdutos(data);
     } catch (error) {
       console.error("Erro ao buscar produtos", error);
-      alert("Erro ao buscar dados da API.");
+      toast.error(`Erro: ${error.message}`);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -29,36 +42,57 @@ function App() {
 
   const handleCreateOrUpdate = async (formData) => {
     try {
+      let response;
       if (produtoEmEdicao) {
-        await fetch(`${BASE_URL}/produtos/${produtoEmEdicao.id}`, {
+        response = await fetch(`${BASE_URL}/produtos/${produtoEmEdicao.id}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(formData)
         });
       } else {
-        await fetch(`${BASE_URL}/produtos`, {
+        response = await fetch(`${BASE_URL}/produtos`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(formData)
         });
       }
+
+      if (!response.ok) {
+        const errData = await response.json().catch(() => ({}));
+        throw new Error(errData.mensagem || 'Erro ao salvar a peça');
+      }
+
+      toast.success(produtoEmEdicao ? 'Peça atualizada com sucesso!' : 'Peça cadastrada com sucesso!');
       setIsModalOpen(false);
       setProdutoEmEdicao(null);
       fetchProdutos();
     } catch (error) {
       console.error("Erro ao salvar", error);
-      alert("Erro ao salvar a peça.");
+      toast.error(`Erro: ${error.message}`);
     }
   };
 
-  const handleDelete = async (id) => {
-    if(window.confirm('Tem certeza que deseja excluir este item?')) {
-      try {
-        await fetch(`${BASE_URL}/produtos/${id}`, { method: 'DELETE' });
-        fetchProdutos();
-      } catch (error) {
-        console.error("Erro ao excluir", error);
+  const requestDelete = (id) => {
+    setItemToDelete(id);
+    setIsConfirmOpen(true);
+  };
+
+  const confirmDelete = async () => {
+    if (!itemToDelete) return;
+    try {
+      const response = await fetch(`${BASE_URL}/produtos/${itemToDelete}`, { method: 'DELETE' });
+      if (!response.ok) {
+        const errData = await response.json().catch(() => ({}));
+        throw new Error(errData.mensagem || 'Erro ao excluir a peça');
       }
+      toast.success('Peça excluída com sucesso!');
+      fetchProdutos();
+    } catch (error) {
+      console.error("Erro ao excluir", error);
+      toast.error(`Erro: ${error.message}`);
+    } finally {
+      setIsConfirmOpen(false);
+      setItemToDelete(null);
     }
   };
 
@@ -79,6 +113,8 @@ function App() {
 
   return (
     <div className="admin-layout">
+      <Toaster position="top-right" />
+      
       {/* Sidebar */}
       <aside className="admin-sidebar">
         <div className="sidebar-header">
@@ -136,11 +172,17 @@ function App() {
             </div>
           </div>
 
-          <ProductList 
-            produtos={filteredProdutos} 
-            onEdit={openEditModal} 
-            onDelete={handleDelete} 
-          />
+          {loading ? (
+            <div className="table-empty">
+              <p>Carregando dados...</p>
+            </div>
+          ) : (
+            <ProductList 
+              produtos={filteredProdutos} 
+              onEdit={openEditModal} 
+              onDelete={requestDelete} 
+            />
+          )}
 
           <ProductForm 
             isOpen={isModalOpen}
@@ -149,6 +191,17 @@ function App() {
             onCancel={() => {
               setIsModalOpen(false);
               setProdutoEmEdicao(null);
+            }}
+          />
+
+          <ConfirmModal 
+            isOpen={isConfirmOpen}
+            title="Atenção"
+            message="Tem certeza que deseja excluir esta peça definitivamente? Esta ação não pode ser desfeita."
+            onConfirm={confirmDelete}
+            onCancel={() => {
+              setIsConfirmOpen(false);
+              setItemToDelete(null);
             }}
           />
         </main>

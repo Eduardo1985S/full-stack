@@ -59,3 +59,11 @@ Para que o sistema funcione corretamente, ambas as partes precisam estar rodando
 *Desenvolvido com foco em um CRUD completo, conectando banco de dados relacional e uma interface limpa e intuitiva baseada nos moldes clássicos de Admin Panel.*
 
 <!-- CHECKPOINT id="ckpt_moikn6t8_vf7q0u" time="2026-04-28T11:57:31.580Z" note="auto" fixes=0 questions=0 highlights=0 sections="" -->
+
+<!-- CHECKPOINT id="ckpt_moil01s1_pklodn" time="2026-04-28T12:07:31.585Z" note="auto" fixes=0 questions=0 highlights=0 sections="" -->
+
+<!-- CHECKPOINT id="ckpt_moilcwqv_yrgobc" time="2026-04-28T12:17:31.591Z" note="auto" fixes=0 questions=0 highlights=0 sections="" -->
+
+<!-- CHECKPOINT id="ckpt_moilprpy_nq1eex" time="2026-04-28T12:27:31.606Z" note="auto" fixes=0 questions=0 highlights=0 sections="" -->
+
+<!-- CHECKPOINT id="ckpt_moim2mp1_lfczf8" time="2026-04-28T12:37:31.621Z" note="auto" fixes=0 questions=0 highlights=0 sections="" -->

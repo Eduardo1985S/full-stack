@@ -41,16 +41,14 @@ pool.connect((erro, client, release) => {
 // ============================================================
 // CRIAR TABELA AUTOMATICAMENTE
 // ============================================================
-
 const criarTabela = async () => {
   const sql = `
     CREATE TABLE IF NOT EXISTS produtos (
-      id         SERIAL PRIMARY KEY,
-      nome       VARCHAR(255)   NOT NULL,
-      preco      DECIMAL(10,2)  NOT NULL,
-      estoque    INTEGER        NOT NULL,
-      categoria  VARCHAR(100)   NOT NULL,
-      criado_em  TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      id SERIAL PRIMARY KEY,
+      nome VARCHAR(100) NOT NULL,
+      preco DECIMAL(10, 2) NOT NULL,
+      estoque INTEGER NOT NULL,
+      categoria VARCHAR(50) NOT NULL
     )
   `;
   
@@ -67,5 +65,4 @@ criarTabela();
 // ============================================================
 // EXPORTAR O POOL
 // ============================================================
-
 module.exports = pool;

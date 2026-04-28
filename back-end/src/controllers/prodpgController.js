@@ -170,7 +170,7 @@ async function deletar(req, res) {
 
 // ============================================================
 // FUNÇÃO: buscarPorNome (ASSÍNCRONA)
-// ROTA: GET /produtos/categoria/:categoria
+// ROTA: GET /produtos/buscar/nome/:nome
 // ============================================================
 async function buscarPorNome(req, res) {
   try {
