@@ -2,9 +2,6 @@
 // CONFIGURAÇÃO DO BANCO DE DADOS PostgreSQL COM DOTENV
 // ============================================================
 
-// Importar dotenv e carregar variáveis do arquivo .env
-require('dotenv').config();
-
 // Importar o Pool do PostgreSQL
 const { Pool } = require('pg');
 
@@ -19,7 +16,7 @@ const pool = new Pool({
   host: process.env.DB_HOST,           // Lê DB_HOST do .env
   database: process.env.DB_NAME,       // Lê DB_NAME do .env
   password: process.env.DB_PASSWORD,   // Lê DB_PASSWORD do .env
-  port: parseInt(process.env.DB_PORT), // Lê DB_PORT e converte para número
+  port: parseInt(process.env.DB_PORT) || 5432, // Lê DB_PORT e converte para número
 });
 
 // ============================================================

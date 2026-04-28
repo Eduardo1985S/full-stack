@@ -6,8 +6,7 @@ const pool = require('../config/database');
 // DESCRIÇÃO: Retorna todos os produtos do banco
 // RETORNO: Promise com array de produtos
 // ============================================================
-// pool.query() já retorna uma Promise automaticamente!
-// Não precisamos criar new Promise como fizemos no SQLite
+// pool.query() retorna uma Promise automaticamente
 async function listarTodos() {
   // PostgreSQL: a query retorna um objeto 'result'
   const result = await pool.query(
@@ -26,7 +25,6 @@ async function listarTodos() {
 // ============================================================
 async function buscarPorId(id) {
   // PostgreSQL usa $1, $2, $3... como placeholders
-  // (SQLite usava ? ? ?)
   const result = await pool.query(
     'SELECT * FROM produtos WHERE id = $1',
     [id]  // O array com os valores dos placeholders
@@ -113,8 +111,7 @@ async function deletar(id) {
 // RETORNO: Promise com array de produtos
 // ============================================================
 async function buscarPorNome(nome) {
-  // ILIKE é o LIKE case-insensitive do PostgreSQL
-  // (no SQLite usávamos LIKE normal)
+  // ILIKE: variante case-insensitive do LIKE no PostgreSQL
   const sql = 'SELECT * FROM produtos WHERE nome ILIKE $1';
   
   const result = await pool.query(

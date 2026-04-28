@@ -15,7 +15,7 @@ router.get('/', ProdutoController.listarTodos);
 // GET /produtos/buscar/nome/:nome - Buscar por nome
 router.get('/buscar/nome/:nome', ProdutoController.buscarPorNome);
 
-// GET /produtos/:id - Buscar produto específico por ID
+// GET /produtos/buscar/id/:id - Buscar produto específico por ID
 router.get('/buscar/id/:id', ProdutoController.buscarPorId);
 
 // POST /produtos - Criar novo produto

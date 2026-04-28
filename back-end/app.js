@@ -4,7 +4,18 @@ const express = require('express');
 const cors = require('cors');
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: (origin, callback) => {
+    // Em desenvolvimento aceita qualquer localhost; em produção usa CORS_ORIGIN
+    const allowedOrigin = process.env.CORS_ORIGIN;
+    const isLocalhost = !origin || /^http:\/\/localhost(:\d+)?$/.test(origin);
+    if (allowedOrigin ? origin === allowedOrigin : isLocalhost) {
+      callback(null, true);
+    } else {
+      callback(new Error('Origem não permitida pelo CORS'));
+    }
+  }
+}));
 
 const PORT = process.env.PORT || 3000;
 

@@ -63,6 +63,7 @@ export default function ProductForm({ onSubmit, initialData, onCancel, isOpen })
                 type="number"
                 name="preco"
                 step="0.01"
+                min="0.01"
                 className="input-field"
                 value={formData.preco}
                 onChange={handleChange}
@@ -75,6 +76,7 @@ export default function ProductForm({ onSubmit, initialData, onCancel, isOpen })
               <input
                 type="number"
                 name="estoque"
+                min="0"
                 className="input-field"
                 value={formData.estoque}
                 onChange={handleChange}
@@ -103,7 +105,7 @@ export default function ProductForm({ onSubmit, initialData, onCancel, isOpen })
           </div>
 
           <div className="modal-footer">
-            <button type="button" className="btn btn-danger" onClick={onCancel}>
+            <button type="button" className="btn btn-secondary" onClick={onCancel}>
               Cancelar
             </button>
             <button type="submit" className="btn btn-primary">

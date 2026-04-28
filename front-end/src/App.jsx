@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { BASE_URL } from './services/api';
 import ProductList from './components/ProductList';
 import ProductForm from './components/ProductForm';
@@ -28,7 +28,7 @@ function App() {
     setIsDetailOpen(true);
   };
 
-  const fetchProdutos = async () => {
+  const fetchProdutos = useCallback(async () => {
     try {
       setLoading(true);
       const response = await fetch(`${BASE_URL}/produtos`);
@@ -44,11 +44,11 @@ function App() {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     fetchProdutos();
-  }, []);
+  }, [fetchProdutos]);
 
   const handleCreateOrUpdate = async (formData) => {
     try {
@@ -135,12 +135,14 @@ function App() {
           <div className="nav-item active">
             <LayoutDashboard size={18} /> Início
           </div>
-          <div className="nav-item">
+          <div className="nav-item wip-item">
             <Package size={18} /> Inventário
+            <span className="wip-badge">Em desenvolvimento</span>
           </div>
           <div className="nav-category">Configurações</div>
-          <div className="nav-item">
+          <div className="nav-item wip-item">
             <Settings size={18} /> Preferências
+            <span className="wip-badge">Em desenvolvimento</span>
           </div>
         </div>
       </aside>
@@ -155,7 +157,10 @@ function App() {
           <div className="topbar-right">
             <User size={18} />
             <span>Administrador</span>
-            <LogOut size={18} style={{marginLeft: '1rem', cursor: 'pointer'}} />
+            <span className="wip-item" style={{marginLeft: '1rem', cursor: 'pointer', position: 'relative', display: 'inline-flex'}}>
+              <LogOut size={18} />
+              <span className="wip-badge wip-badge--top">Em desenvolvimento</span>
+            </span>
           </div>
         </header>
 

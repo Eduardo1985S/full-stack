@@ -1,6 +1,9 @@
 // Importar as funções do Model
 const ProdutoModel = require('../models/prodpgModel');
 
+const isProd = process.env.NODE_ENV === 'production';
+const erroDetalhado = (e) => isProd ? undefined : e.message;
+
 // ============================================================
 // FUNÇÃO: listarTodos (ASSÍNCRONA)
 // ROTA: GET /produtos
@@ -13,14 +16,14 @@ async function listarTodos(req, res) {
   } catch (erro) {
     res.status(500).json({ 
       mensagem: 'Erro ao listar produtos', 
-      erro: erro.message 
+      erro: erroDetalhado(erro) 
     });
   }
 }
 
 // ============================================================
 // FUNÇÃO: buscarPorId (ASSÍNCRONA)
-// ROTA: GET /produtos/:id
+// ROTA: GET /produtos/buscar/id/:id
 // ============================================================
 async function buscarPorId(req, res) {
   try {
@@ -44,7 +47,7 @@ async function buscarPorId(req, res) {
   } catch (erro) {
     res.status(500).json({ 
       mensagem: 'Erro ao buscar produto',
-      erro: erro.message 
+      erro: erroDetalhado(erro) 
     });
   }
 }
@@ -58,7 +61,7 @@ async function criar(req, res) {
     const { nome, preco, estoque, categoria } = req.body;
     
     // Validações
-    if (!nome || !preco || !estoque || !categoria) {
+    if (!nome || !categoria || preco == null || preco === '' || estoque == null || estoque === '') {
       return res.status(400).json({ 
         mensagem: 'Todos os campos são obrigatórios' 
       });
@@ -87,7 +90,7 @@ async function criar(req, res) {
   } catch (erro) {
     res.status(500).json({ 
       mensagem: 'Erro ao criar produto',
-      erro: erro.message 
+      erro: erroDetalhado(erro) 
     });
   }
 }
@@ -107,7 +110,7 @@ async function atualizar(req, res) {
       });
     }
     
-    if (!nome || !preco || !estoque || !categoria) {
+    if (!nome || !categoria || preco == null || preco === '' || estoque == null || estoque === '') {
       return res.status(400).json({ 
         mensagem: 'Todos os campos são obrigatórios' 
       });
@@ -130,7 +133,7 @@ async function atualizar(req, res) {
   } catch (erro) {
     res.status(500).json({ 
       mensagem: 'Erro ao atualizar produto',
-      erro: erro.message 
+      erro: erroDetalhado(erro) 
     });
   }
 }
@@ -163,7 +166,7 @@ async function deletar(req, res) {
   } catch (erro) {
     res.status(500).json({ 
       mensagem: 'Erro ao deletar produto',
-      erro: erro.message 
+      erro: erroDetalhado(erro) 
     });
   }
 }
@@ -180,7 +183,7 @@ async function buscarPorNome(req, res) {
   } catch (erro) {
     res.status(500).json({ 
       mensagem: 'Erro ao buscar produtos por nome',
-      erro: erro.message 
+      erro: erroDetalhado(erro)
     });
   }
 }

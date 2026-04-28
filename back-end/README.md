@@ -37,6 +37,7 @@ DB_PASSWORD=sua_senha_aqui
 DB_PORT=5432
 PORT=3000
 NODE_ENV=development
+CORS_ORIGIN=http://localhost:5173
 ```
 
 ### 3. Banco de Dados
@@ -50,7 +51,7 @@ Ao rodar a aplicação, a **tabela `produtos` será criada automaticamente** pel
 Inicie o servidor com o comando:
 
 ```bash
-node app.js
+npm run dev
 ```
 
 Se tudo der certo, você verá uma mensagem no console dizendo que o servidor está rodando na porta `3000` (ou a definida no `.env`) e que está conectado ao banco de dados PostgreSQL.
